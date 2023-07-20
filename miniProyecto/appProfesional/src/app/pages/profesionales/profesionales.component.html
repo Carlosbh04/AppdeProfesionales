@@ -1,0 +1,56 @@
+<form [formGroup]="agregarFormulario" *ngIf="mostrarFormulario" class="formulario">
+    <h2 class="Formulario">Formulario</h2>
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" formControlName="nombre" required class="input-field">
+  
+    <label for="apellido">Apellido</label>
+    <input type="text" id="apellido" formControlName="apellido" required class="input-field">
+  
+    <label for="titulo">Título</label>
+    <input type="text" id="titulo" [value]="profesionalSeleccionado?.titulo" required class="input-field" formControlName="titulo">
+  
+    <label for="experiencia">Experiencia</label>
+    <input type="number" id="experiencia" [value]="profesionalSeleccionado?.experiencia" required class="input-field" formControlName="experiencia">
+  
+    <label for="habilidades">Habilidades</label>
+    <input type="text" id="habilidades" [value]="profesionalSeleccionado?.habilidades?.join(', ')" required class="input-field" formControlName="habilidades">
+  
+    <label for="educacion">Educación</label>
+    <input type="text" id="educacion" [value]="profesionalSeleccionado?.educacion" required class="input-field" formControlName="educacion">
+  
+    <div class="boton">
+      <button type="submit" class="form-button" (click)="crearProfesional()">Crear</button>
+      <button type="button" (click)="buscarProfesionales()">Mostrar</button>
+    </div>
+  </form>
+  
+  
+  <h2>Tabla de Profesionales</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Título</th>
+        <th>Experiencia</th>
+        <th>Habilidades</th>
+        <th>Educación</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let profesional of profesionales">
+        <td>{{ profesional.nombre }}</td>
+        <td>{{ profesional.apellido }}</td>
+        <td>{{ profesional.titulo }}</td>
+        <td>{{ profesional.experiencia }}</td>
+        <td>{{ profesional.habilidades }}</td>
+        <td>{{ profesional.educacion }}</td>
+        <td>
+          <button class="Boton" (click)="actualizarProfesional(profesional)">Actualizar</button>
+          <button class="Boton" (click)="eliminarProfesional(profesional)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
